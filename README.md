@@ -34,7 +34,7 @@ This example shows how having a simple object can be dragged into a collection. 
 ```
 
 ```html
-<div class="item" draggable drag-model="cube"></div>
+<div class="item" draggable drag-model="cube">Cube Object</div>
 <div class="drop-area" droppable drop-model="items">
     <div ng-repeat="shape in shapes" ng-bind="shape.name"></div>
 </div>
