@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="demo">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="../dragDrop.js"></script>
+    <script type="text/javascript" src="demo.js"></script>
+    <style type="text/css">
+    * { font-family: Arial; font-weight: normal; }
+    body { background: #F1F1F1; }
+    .note { float: left; padding: 10px; background:#FFF9C4; width: 200px; }
+    .note input { padding: 4px; width: 192px; border: 0; border-bottom: 1px solid #999; background: transparent; }
+    .note textarea { width: 192px; height: 100px; padding: 4px; background: transparent; border: 0; margin-top: 4px; }
+    .drop-area { background: #FFF; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); padding: 20px; min-height: 100px; }
+    .drop-area::after { display: block; clear: both; padding:1px; content: ''; }
+    .drop-area.drag-over { background: #F1F8E9; } /* Class added by library. */
+    </style>
+</head>
+<body ng-controller="DemoController">
+    <h1>Demo <small>Notes</small></h1>
+    <h2>Add Note</h2>
+    <input type="text" placeholder="Name" ng-model="addForm.title" /><button ng-click="addForm.submit()">Add Note</button>
+    <h2>Work in Progress</h2>
+    <div class="drop-area" droppable drop-model="workInProgressNotes" drop="dropWorkInProgress()">
+        <div class="note" draggable ng-repeat="note in workInProgressNotes" drag-model="note">
+            <input ng-model="note.title" />
+            <textarea ng-model="note.text"></textarea>
+        </div>
+    </div>
+    <h2>Published</h2>
+    <div class="drop-area" droppable drop-model="publishedNotes" drop="dropPublished()">
+        <div class="note" draggable ng-repeat="note in publishedNotes" drag-model="note">
+            <div class="title" ng-bind="note.title"></div>
+            <p class="text" ng-bind="note.text"></p>
+        </div>
+    </div>
+</body>
+</html>
